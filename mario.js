@@ -4,23 +4,16 @@ function printPyramid(height) {
     function drawRowPart(n, divRow, className)
     {
         for (let i=0;i<n;i++)
-        {
-            let divBlock = document.createElement("div");
-            divBlock.className=className;
-            divRow.appendChild(divBlock);
-        };
+            divRow.append(`<div class="${className}"/>`);
     }
 
-    const container = document.body.querySelector("div#pyramid");
+    const container = $("#pyramid");
     for (var i=1;i<=height;i++){
-       
-        var divRow = document.createElement("div");
-        divRow.className="rowblock";
-        container.appendChild(divRow);
-        
+        var added = container.append(`<div id="r${i}" class="rowblock"/>`);
+        let divRow = $(`#r${i}`);
         drawRowPart(height-i, divRow, "block emptyblock");
-        drawRowPart(i+1, divRow, "block fullblock");
+        drawRowPart(i+1, divRow, "block");
     }
-    var constructionDiv = document.body.querySelector("div#construction"); 
-    constructionDiv.parentElement.removeChild(constructionDiv);
+    
+    $("#construction").remove();
 };
